@@ -1,0 +1,5 @@
+classes = 3
+train  = /home/moonji/testing/opencv-dnn-gpu/darknet/YOLOv3_mask_detect/Mask/train.txt
+valid  = /home/moonji/testing/opencv-dnn-gpu/darknet/YOLOv3_mask_detect/Mask/test.txt
+names = /home/moonji/testing/opencv-dnn-gpu/darknet/YOLOv3_mask_detect/Mask/obj.names
+backup = /home/moonji/testing/opencv-dnn-gpu/darknet/YOLOv3_mask_detect/Mask/backup/
