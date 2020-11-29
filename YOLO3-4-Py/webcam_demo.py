@@ -8,7 +8,7 @@ from smbus2 import SMBus
 import board
 import digitalio
 import random
-
+from mttkinter import *
 from azure.iot.device import IoTHubDeviceClient, Message
 
 CONNECTION_STRING = 'HostName=Thermonitor2020.azure-devices.net;DeviceId=jetson-nano-moonji;SharedAccessKey=LoJEq95prhB8PrmZILDDeLqOlALehMaZHgqsgYjPvMI='
@@ -20,8 +20,9 @@ def iothub_client_init():
     client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
     return client
 
-lock = threading.Lock()
 
+lock = threading.Lock()
+ready = False
 current_rfid = "" 
 prev_rfid = ""
 curr_temp = -1
@@ -29,6 +30,8 @@ rled = digitalio.DigitalInOut(board.D17)
 gled = digitalio.DigitalInOut(board.D18)
 rled.direction = digitalio.Direction.OUTPUT
 gled.direction = digitalio.Direction.OUTPUT
+
+
 
 def start_RFID():
     global current_rfid
@@ -41,7 +44,7 @@ def start_RFID():
         #while len(id) < 16 and ok = True :
         try:
             gled.value=False
-            print("reading...", ok, len(id))
+            #print("reading...", ok, len(id))
             b=bus.read_byte(0x41)
             id+=chr(b)
             print("read", chr(b))
@@ -151,6 +154,7 @@ def facedetect():
     global current_rfid
     global prev_rfid
     global curr_temp
+    global ready
     current_temp = -1
     # Optional statement to configure preferred GPU. Available only in GPU version.
     # pydarknet.set_cuda_device(0)
@@ -202,15 +206,17 @@ def facedetect():
 
                     prev_rfid = current_rfid
                     current_rfid = ""
-                    curr_temp = current_temp 
+                    curr_temp = current_temp
+                    ready=True
                     print("this is avg of ur current temp and rfid", current_rfid, round(current_temp,2))
                     msg_txt_formatted = MSG_TXT.format(humidity=100, temperature=current_temp)
-                    
+                     
                     message = Message(msg_txt_formatted)
                     print("Sending message: {}".format(message))
                     client.send_message(message)
                     print("Message successfully sent")
                 lock.release()
+                
 
             cv2.imshow("preview", frame)
 
@@ -218,35 +224,53 @@ def facedetect():
         if k == 0xFF & ord("q"):
             break
     cap.release()
-"""
-def displaytemp():
-    global current_rfid
-    global curr_temp
 
-    my_window = Tk()
-    my_window.geometry("100x590")
+
+def displaytemp():
+    #global current_rfid
+    #global curr_temp
+    my_window = mtTkinter.Tk()
+    my_window.geometry("740x100")
+    sleep = False
+    T = mtTkinter.Label(my_window, bg="#808080", fg="white", font="none 24", height = 50, width = 50, anchor = mtTkinter.CENTER)
+    T.pack()  
+ 
     def redraw():
-        lock.aquire()
-        if current_rfid != "":
+        global ready
+        nonlocal sleep
+        global curr_temp
+        global current_rfid
+        nonlocal T 
+        if sleep:
+            time.sleep(5)
+            sleep = False
+        lock.acquire()
+       
+        if ready:
+            print("DRAWING CURR TEMP:", curr_temp)
             if curr_temp > 38:
-                my_window.configure(bg='#ff0000')
+                T.config(text="NOT OK", bg="#b53737", fg="white")
             elif curr_temp > 32 and curr_temp <= 38:
-                my_window.configure(bg='#00ff00')
+                T.config(text="OK", bg="#06a94d", fg="white")
             else:
-                my_window.configure(bg='#ffff00')
+                T.config(text="INVALID", bg="#ffff00", fg="white")
+
+            sleep = True
+            ready = False
+        elif current_rfid:
+            T.config(text="RFID SCANNED", bg="#333333", fg="white")
+            
         else:
-            my_window.configure(bg='#808080')
+            T.config(text="", bg="#808080", font="none 24", height = 50, width =            50, anchor = mtTkinter.CENTER)
         lock.release()
         my_window.after(100, redraw)
     redraw()
     my_window.mainloop()
-"""
+
 
 t=threading.Thread(target=start_RFID)
 t2 = threading.Thread(target=facedetect)
-#t3 = threading.Thread(target=displaytemp)
 t.start()
 t2.start()
-#t3.start()
-#displaytemp()
+displaytemp()
 
