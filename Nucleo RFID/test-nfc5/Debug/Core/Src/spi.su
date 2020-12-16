@@ -1,0 +1,4 @@
+spi.c:55:6:spiInit	16	static
+spi.c:63:6:spiSelect	16	static
+spi.c:68:6:spiDeselect	16	static
+spi.c:73:19:spiTxRx	32	static

@@ -1,0 +1,4 @@
+ndef_example_read.c:100:6:ndefExampleRead	16	static
+ndef_example_read.c:180:6:ndefExampleParseMessage	48	static
+ndef_example_read.c:212:6:ndefExamplePrintString	24	static
+ndef_example_read.c:235:6:ndefExampleParseRecord	288	static

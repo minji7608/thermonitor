@@ -1,0 +1,17 @@
+ndef_dump.c:100:13:isPrintableASCII	24	static
+ndef_dump.c:122:12:ndefRecordDump	112	static
+ndef_dump.c:204:12:ndefMessageDump	24	static
+ndef_dump.c:236:12:ndefEmptyTypeDump	16	static
+ndef_dump.c:255:12:ndefRtdDeviceInfoDump	96	static
+ndef_dump.c:313:12:ndefRtdTextDump	40	static
+ndef_dump.c:342:12:ndefRtdUriDump	32	static
+ndef_dump.c:367:12:ndefRtdAarDump	24	static
+ndef_dump.c:390:12:ndefMediaTypeDump	32	static
+ndef_dump.c:415:19:ndefMediaVCardTranslate	104	static
+ndef_dump.c:461:12:ndefMediaVCardDump	160	static
+ndef_dump.c:541:12:ndefMediaWifiDump	40	static
+ndef_dump.c:568:12:ndefRecordDumpType	296	static
+ndef_dump.c:597:19:ndefBufferDumpLine	32	static
+ndef_dump.c:638:12:ndefBufferDump	48	static
+ndef_dump.c:687:12:ndefBufferPrint	32	static
+ndef_dump.c:708:12:ndefBuffer8Print	32	static

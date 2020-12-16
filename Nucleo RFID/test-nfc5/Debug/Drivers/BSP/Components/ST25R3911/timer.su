@@ -1,0 +1,5 @@
+timer.c:68:10:timerCalculateTimer	16	static
+timer.c:75:6:timerIsExpired	24	static
+timer.c:99:6:timerDelay	24	static
+timer.c:110:6:timerStopwatchStart	8	static
+timer.c:117:10:timerStopwatchMeasure	8	static

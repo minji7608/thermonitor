@@ -1,0 +1,4 @@
+rfal_t1t.c:128:12:rfalT1TPollerInitialize	16	static
+rfal_t1t.c:144:12:rfalT1TPollerRid	48	static
+rfal_t1t.c:172:12:rfalT1TPollerRall	48	static
+rfal_t1t.c:191:12:rfalT1TPollerWrite	56	static

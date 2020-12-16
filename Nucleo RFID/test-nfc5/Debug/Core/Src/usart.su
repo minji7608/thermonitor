@@ -1,0 +1,4 @@
+usart.c:44:6:UsartInit	16	static
+usart.c:55:9:UsartTxByte	16	static
+usart.c:70:9:UsartTx	16	static
+usart.c:85:9:UsartRx	24	static

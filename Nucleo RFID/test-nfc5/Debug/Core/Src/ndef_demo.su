@@ -1,0 +1,3 @@
+ndef_demo.c:135:6:demoIni	24	static
+ndef_demo.c:201:6:demoCycle	64	static
+ndef_demo.c:384:12:demoTransceiveBlocking	40	static

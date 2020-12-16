@@ -1,0 +1,4 @@
+logger.c:70:6:logUsartInit	16	static
+logger.c:82:9:logUsartTx	16	static
+logger.c:90:5:logUsart	272	static
+logger.c:106:7:hex2Str	40	static

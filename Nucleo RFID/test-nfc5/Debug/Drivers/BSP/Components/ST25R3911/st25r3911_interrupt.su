@@ -1,0 +1,13 @@
+core_cm4.h:1626:22:NVIC_EnableIRQ	16	static
+core_cm4.h:1637:22:NVIC_DisableIRQ	16	static
+st25r3911_interrupt.c:86:6:st25r3911InitInterrupts	8	static
+st25r3911_interrupt.c:108:6:st25r3911Isr	8	static
+st25r3911_interrupt.c:118:6:st25r3911CheckForReceivedInterrupts	16	static,ignoring_inline_asm
+st25r3911_interrupt.c:161:6:st25r3911ModifyInterrupts	32	static
+st25r3911_interrupt.c:182:10:st25r3911WaitForInterruptsTimed	24	static,ignoring_inline_asm
+st25r3911_interrupt.c:202:10:st25r3911GetInterrupt	24	static,ignoring_inline_asm
+st25r3911_interrupt.c:216:6:st25r3911EnableInterrupts	16	static
+st25r3911_interrupt.c:221:6:st25r3911DisableInterrupts	16	static
+st25r3911_interrupt.c:226:6:st25r3911ClearInterrupts	16	static,ignoring_inline_asm
+st25r3911_interrupt.c:238:6:st25r3911IRQCallbackSet	16	static
+st25r3911_interrupt.c:244:6:st25r3911IRQCallbackRestore	4	static
